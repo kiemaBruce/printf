@@ -8,13 +8,12 @@
   */
 int _printf(const char *format, ...)
 {
-	int i, flen, x;
+	int i, flen, x, r;
 	va_list args;
 
 	if (format == NULL)
-	{
 		return (0);
-	}
+	r = 0;
 	va_start(args, format);
 	flen = getLength((char *)format);
 
@@ -26,7 +25,7 @@ int _printf(const char *format, ...)
 			if (i == 0 && (flen == 1))
 				return (0);
 			/*Format consists of % only, or there's a trailing %*/
-			if (x == 1 && (format[i - 1] == '%'))
+			if (x == -1 && (format[i - 1] == '%'))
 			{
 				return (0);
 			}
@@ -34,19 +33,21 @@ int _printf(const char *format, ...)
 			  * valid format specifier, hence after printing it we
 			  * increment and move to the next character
 			  */
-			if (x == 0)
+			if (x >= 0 && x != 3)
 			{
+				r = r + x;
 				i++;
 				continue;
 			}
-			if (x == 2)
+			if (x == -2)
 			{
 				i++;
 			}
 		}
 		_putchar(*(format + i));
+		r++;
 	}
-	return (0);
+	return (r);
 }
 /**
  * formatHandler - prints out arguments according to their format specifiers
@@ -59,18 +60,20 @@ int _printf(const char *format, ...)
  */
 int formatHandler(char c, va_list args)
 {
-	int i, slen;
+	int i, slen, r1;
 	char d;
 	char *s;
 
 	i = 0;
+	r1 = 0;
 
 	switch (c)
 	{
 		case 'c':
 			d = (char)(va_arg(args, int));
 			_putchar(d);
-			return (0);
+			r1++;
+			return (r1);
 		case 's':
 			s = va_arg(args, char*);
 			/**
@@ -83,12 +86,12 @@ int formatHandler(char c, va_list args)
 			{
 				_putchar(s[i]);
 			}
-			return (0);
+			return (slen);
 		case '%':
 			/*_putchar('%');*/
-			return (2);
+			return (-2);
 		case '\0':
-			return (1);
+			return (-1);
 		default:
 			return (3);
 	}
