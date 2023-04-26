@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	if (format == NULL)
-		return (0);
+		return (-1);
 	r = 0;
 	va_start(args, format);
 	flen = getLength((char *)format);
