@@ -60,7 +60,7 @@ int _printf(const char *format, ...)
  */
 int formatHandler(char c, va_list args)
 {
-	int i, slen, r1, r2, r3, rlen;
+	int i, slen, r1;
 	char d;
 	char *s;
 
