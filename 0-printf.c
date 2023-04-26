@@ -60,11 +60,10 @@ int _printf(const char *format, ...)
  */
 int formatHandler(char c, va_list args)
 {
-	int i, slen, r1;
+	int slen, r1;
 	char d;
 	char *s;
 
-	i = 0;
 	r1 = 0;
 
 	switch (c)
@@ -76,16 +75,18 @@ int formatHandler(char c, va_list args)
 			return (r1);
 		case 's':
 			s = va_arg(args, char*);
+			if (s == NULL)
+			{
+				print_string(6, "(null)");
+				return (0);
+			}
 			/**
 			 * The official printf from the stdio.h throws a
 			 * segmentation error if the string is NULL. This means
 			 * I don't have to ensure that the string isn't NULL
 			 */
 			slen = getLength(s);
-			for (i = 0; i < slen; i++)
-			{
-				_putchar(s[i]);
-			}
+			print_string(slen, s);
 			return (slen);
 		case 'd':
 			return (intPrinter(args));

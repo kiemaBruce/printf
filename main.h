@@ -12,5 +12,6 @@ void print_number(int n);
 int det_digits(int x);
 int raise(int x, int y);
 int intPrinter(va_list args);
+void print_string(int slen, char *s);
 
 #endif /* MAIN_H */
