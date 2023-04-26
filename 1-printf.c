@@ -11,6 +11,10 @@ int intPrinter(va_list args)
 
 	r2 = va_arg(args, int);
 	print_number(r2);
+	if (r2 == 0)
+	{
+		return (1);
+	}
 	if (r2 < 0)
 	{
 		return (1 + det_digits(r2));
