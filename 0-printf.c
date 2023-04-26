@@ -86,7 +86,6 @@ int formatHandler(char c, va_list args)
 			{
 				_putchar(s[i]);
 			}
-			_putchar('\0');
 			return (slen);
 		case '%':
 			/*_putchar('%');*/
