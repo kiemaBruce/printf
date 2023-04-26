@@ -60,7 +60,7 @@ int _printf(const char *format, ...)
  */
 int formatHandler(char c, va_list args)
 {
-	int i, slen, r1;
+	int i, slen, r1, r2, r3, rlen;
 	char d;
 	char *s;
 
@@ -87,8 +87,11 @@ int formatHandler(char c, va_list args)
 				_putchar(s[i]);
 			}
 			return (slen);
+		case 'd':
+			return (intPrinter(args));
+		case 'i':
+			return (intPrinter(args));
 		case '%':
-			/*_putchar('%');*/
 			return (-2);
 		case '\0':
 			return (-1);

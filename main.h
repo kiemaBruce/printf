@@ -8,5 +8,9 @@ int _printf(const char *format, ...);
 int formatHandler(char c, va_list args);
 int getLength(char *s);
 int _putchar(char c);
+void print_number(int n);
+int det_digits(int x);
+int raise(int x, int y);
+int intPrinter(va_list args);
 
 #endif /* MAIN_H */
