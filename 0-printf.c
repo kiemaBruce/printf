@@ -22,13 +22,12 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			x = formatHandler(format[i + 1], args);
+			/* Format consists of % only */
 			if (i == 0 && (flen == 1))
-				return (0);
+				return (-1);
 			/*Format consists of % only, or there's a trailing %*/
 			if (x == -1)
-			{
 				return (-1);
-			}
 			/**
 			  * valid format specifier, hence after printing it we
 			  * increment and move to the next character
@@ -56,7 +55,10 @@ int _printf(const char *format, ...)
  * Description: if c is not a format specifier, the function returns 1 and
  * doesn't print anything. If it is a format specifier, the argument is
  * printed accordingly.
- * Return: 0 if the c is a format specifier, 1 if c is not a format specifier
+ * Return: 0 if the string is NULL, -1 if the c is a NULL byte -2
+ * if c is a '%' -3 if c is neither a valid format specifier not the previously
+ * mentioned cases. Otherwise, it returns the length of the integer, char or
+ * string that is printed
  */
 int formatHandler(char c, va_list args)
 {
