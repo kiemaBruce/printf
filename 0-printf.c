@@ -25,9 +25,9 @@ int _printf(const char *format, ...)
 			if (i == 0 && (flen == 1))
 				return (0);
 			/*Format consists of % only, or there's a trailing %*/
-			if (x == -1 && (format[i - 1] == '%'))
+			if (x == -1)
 			{
-				return (0);
+				return (-1);
 			}
 			/**
 			  * valid format specifier, hence after printing it we
