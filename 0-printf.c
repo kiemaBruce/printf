@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 			  * valid format specifier, hence after printing it we
 			  * increment and move to the next character
 			  */
-			if (x >= 0 && x != 3)
+			if (x >= 0 && x != -3)
 			{
 				r = r + x;
 				i++;
@@ -86,6 +86,7 @@ int formatHandler(char c, va_list args)
 			{
 				_putchar(s[i]);
 			}
+			_putchar('\0');
 			return (slen);
 		case '%':
 			/*_putchar('%');*/
@@ -93,7 +94,7 @@ int formatHandler(char c, va_list args)
 		case '\0':
 			return (-1);
 		default:
-			return (3);
+			return (-3);
 	}
 }
 /**
