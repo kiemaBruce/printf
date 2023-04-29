@@ -24,16 +24,11 @@ void print_string(int slen, char *s)
   */
 int binaryPrinter(va_list args)
 {
-	unsigned int x;
-	unsigned int r;
-	binList *list = NULL;
-	binList *temp;
-	binList *new;
-	int counter;
+	unsigned int x, r, counter;
+	binList *temp, *new, *list = NULL;
 
 	x = va_arg(args, unsigned int);
 	counter = 0;
-
 	if (x == 0)
 	{
 		_putchar('0' + 0);
@@ -44,6 +39,10 @@ int binaryPrinter(va_list args)
 		if (counter == 0)
 		{
 			list = malloc(sizeof(binList));
+			if (list == NULL)
+			{
+				return (0);
+			}
 			r = x % 2;
 			x = x / 2;
 			list->next = NULL;
@@ -52,6 +51,10 @@ int binaryPrinter(va_list args)
 			continue;
 		}
 		new = malloc(sizeof(binList));
+		if (new == NULL)
+		{
+			return (0);
+		}
 		r = x % 2;
 		x = x / 2;
 		temp = list;
@@ -60,7 +63,6 @@ int binaryPrinter(va_list args)
 		new->value = r;
 	}
 	print_list(list);
-	/*free_list(list);*/
 	return (count_elements(list));
 }
 /**
