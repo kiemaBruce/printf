@@ -60,7 +60,7 @@ int binaryPrinter(va_list args)
 		new->value = r;
 	}
 	print_list(list);
-	free_list(list);
+	/*free_list(list);*/
 	return (count_elements(list));
 }
 /**
@@ -103,10 +103,11 @@ int count_elements(binList *head)
 	int i;
 
 	i = 0;
+
 	while (head != NULL)
 	{
-		i++;
 		head = head->next;
+		i++;
 	}
 	return (i);
 }
