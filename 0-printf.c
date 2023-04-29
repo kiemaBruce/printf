@@ -46,6 +46,7 @@ int _printf(const char *format, ...)
 		_putchar(*(format + i));
 		r++;
 	}
+	va_end(args);
 	return (r);
 }
 /**
@@ -82,11 +83,6 @@ int formatHandler(char c, va_list args)
 				print_string(6, "(null)");
 				return (0);
 			}
-			/**
-			 * The official printf from the stdio.h throws a
-			 * segmentation error if the string is NULL. This means
-			 * I don't have to ensure that the string isn't NULL
-			 */
 			slen = getLength(s);
 			print_string(slen, s);
 			return (slen);
@@ -94,6 +90,8 @@ int formatHandler(char c, va_list args)
 			return (intPrinter(args));
 		case 'i':
 			return (intPrinter(args));
+		case 'b':
+			return (binaryPrinter(args));
 		case '%':
 			return (-2);
 		case '\0':

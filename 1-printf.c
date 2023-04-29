@@ -17,7 +17,7 @@ int intPrinter(va_list args)
 	}
 	if (r2 < 0)
 	{
-		return (1 + det_digits(r2));
+		return (1 + det_digits(-r2));
 	}
 	return (det_digits(r2));
 }
@@ -29,15 +29,16 @@ void print_number(int n)
 {
 	int b, i, r;
 
-	i = n;
+	/*i = n;*/
 
 	if (n < 0)
 	{
-		i = 0 - n;
+		n = 0 - n;
 		_putchar('-');
 		/*print_number(i);*/
 		/*return;*/
 	}
+	i = n;
 	if (n == 0)
 	{
 		_putchar(48);
